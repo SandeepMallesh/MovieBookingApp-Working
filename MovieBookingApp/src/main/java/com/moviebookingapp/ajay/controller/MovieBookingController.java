@@ -1,3 +1,10 @@
+/**
+ * Created by : Ajaymallesh
+ * Date :06-07-2023
+ * Time :10:00
+ * ProjectName :MoviebookingApp
+ */
+
 package com.moviebookingapp.ajay.controller;
 
 import com.moviebookingapp.ajay.model.*;
@@ -11,10 +18,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.moviebookingapp.ajay.repository.MovieRepository;
-
-
 import java.util.List;
 import java.util.Optional;
+
+// @Author : AjayMallesh
 
 @RestController
 @RequestMapping("/api/v1.0/moviebooking")

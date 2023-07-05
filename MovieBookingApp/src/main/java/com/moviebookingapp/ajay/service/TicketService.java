@@ -1,5 +1,11 @@
-package com.moviebookingapp.ajay.service;
+/**
+ * Created by : Ajaymallesh
+ * Date :05-07-2023
+ * Time : 17 : 50
+ * ProjectName :MoviebookingApp
+ */
 
+package com.moviebookingapp.ajay.service;
 
 import com.moviebookingapp.ajay.model.Ticket;
 import com.moviebookingapp.ajay.repository.TicketRepository;

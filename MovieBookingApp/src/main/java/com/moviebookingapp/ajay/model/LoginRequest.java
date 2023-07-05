@@ -1,3 +1,10 @@
+/**
+ * Created by : Ajaymallesh
+ * Date :05-07-2023
+ * Time :15:14
+ * ProjectName :MoviebookingApp
+ */
+
 package com.moviebookingapp.ajay.model;
 
 public class LoginRequest {
