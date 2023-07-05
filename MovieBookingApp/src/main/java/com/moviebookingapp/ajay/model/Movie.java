@@ -10,15 +10,30 @@ import java.util.List;
 public class Movie {
     private String id;
     private String name;
+    private int ticketCount;
+    private int quantity;
+    private int totalTickets;
+
+    private String ticketStatus; // New field for ticket status
+
     private List<Ticket> tickets = new ArrayList<>();
+
+    public Movie() {
+        // Initialize the tickets list
+        this.tickets = new ArrayList<>();
+    }
 
     // Constructor, getters, setters, and other class members
 
 
-    public Movie(String id, String name, List<Ticket> tickets) {
+    public Movie(String id, String name, int ticketCount, int quantity, String ticketStatus, List<Ticket> tickets, String movieName) {
         this.id = id;
         this.name = name;
+        this.ticketCount = ticketCount;
+        this.quantity = quantity;
+        this.ticketStatus = ticketStatus;
         this.tickets = tickets;
+        this.movieName = movieName;
     }
 
     @Field("movieName")
@@ -52,8 +67,46 @@ public class Movie {
         return tickets;
     }
 
+    public void setTotalTickets(int totalTickets) {
+        this.totalTickets = totalTickets;
+    }
+
     public void setTickets(List<String> tickets) {
     }
+
+    public int getTicketCount() {
+        return ticketCount;
+    }
+
+    public void setTicketCount(int ticketCount) {
+        this.ticketCount = ticketCount;
+    }
+    public void setTicketStatus(String ticketStatus) {
+        this.ticketStatus = ticketStatus;
+    }
+    public String getTicketStatus() {
+        return ticketStatus;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public int getTotalTickets() {
+        return totalTickets;
+    }
+
+    public int getAvailableTickets() {
+        int totalBookedQuantity = tickets.stream()
+                .mapToInt(Ticket::getQuantity)
+                .sum();
+        return totalTickets - totalBookedQuantity;
+    }
+
 }
 
 

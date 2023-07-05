@@ -9,6 +9,11 @@ public class Ticket {
     private String id;
     private String movieName;
     private String status;
+    private int quantity;
+
+    public Ticket() {
+
+    }
 
 
     // Other ticket properties
@@ -38,10 +43,19 @@ public class Ticket {
     }
 
     // Constructors, getters, setters
-    public Ticket(String id, String movieName, String status) {
+
+    public Ticket(String id, String movieName, String status, int quantity) {
         this.id = id;
         this.movieName = movieName;
         this.status = status;
+        this.quantity = quantity;
+    }
 
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }
