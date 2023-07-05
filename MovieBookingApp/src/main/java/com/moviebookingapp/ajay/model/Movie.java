@@ -46,6 +46,9 @@ public class Movie {
     @Field("movieName")
     private String movieName;
 
+    public Movie(String s, int i) {
+    }
+
     public String getMovieName() {
         return movieName;
     }

@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class AjayApplicationTests {
+public class AjayApplicationTests {
 
 	@Test
 	void contextLoads() {
