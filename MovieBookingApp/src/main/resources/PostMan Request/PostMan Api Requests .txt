@@ -1,0 +1,110 @@
+************************************************************************************************************************
+
+@Author : AjayMallesh
+
+/**
+ * Created by : Ajaymallesh
+ * Date : 06-07-2023
+ * Time : 16:30
+ * ProjectName :MoviebookingApp
+ */
+
+************************************************************************************************************************
+
+PostMan Api Requests :
+
+1. Add Movies : POST : http://localhost:8080/api/v1.0/moviebooking/movies
+
+    POST : http://localhost:8080/api/v1.0/moviebooking/movies
+
+    Json :
+
+        {
+            "id": "64a4ef8c53c67b03c6874c18",
+            "name": "Varisu",
+            "description": "A period action drama",
+            "totalTickets": 150,
+            "availableTickets": 120,
+            "ticketStatus": "Available",
+            "director": "Prashanth Neel",
+            "cast": ["Yash", "Srinidhi Shetty"],
+            "genre": "Action"
+        }
+
+************************************************************************************************************************
+
+2. AddUSer : POST : http://localhost:8080/api/v1.0/moviebooking/register
+
+    POST : http://localhost:8080/api/v1.0/moviebooking/register
+
+    Json :
+
+        {
+            "userid" : 1,
+            "username" : "mallesh",
+            "password" : 1234
+        }
+
+************************************************************************************************************************
+
+3. Login : POST : http://localhost:8080/api/v1.0/moviebooking/login
+
+    POST : http://localhost:8080/api/v1.0/moviebooking/login
+
+    Json :
+
+        {
+            "username" : "mallesh",
+            "password" : 1234
+        }
+
+************************************************************************************************************************
+
+4. LogOut : GET : http://localhost:8080/api/v1.0/moviebooking/{userName}/logout
+
+    GET : http://localhost:8080/api/v1.0/moviebooking/mallesh/logout
+
+************************************************************************************************************************
+
+5. Forgot Password : GET : http://localhost:8080/api/v1.0/moviebooking/{userName}/forgot
+
+    GET : http://localhost:8080/api/v1.0/moviebooking/mallesh/forgot
+
+************************************************************************************************************************
+
+6. Search Movies by MovieName : GET : http://localhost:8080/api/v1.0/moviebooking/movies/search/{movieName}
+
+    GET : http://localhost:8080/api/v1.0/moviebooking/movies/search/Master
+
+************************************************************************************************************************
+
+7. All Movies : GET : http://localhost:8080/api/v1.0/moviebooking/all
+
+    GET : http://localhost:8080/api/v1.0/moviebooking/all
+
+************************************************************************************************************************
+
+8. Ticket Booking : POST : http://localhost:8080/api/v1.0/moviebooking/{movieName}/book
+
+    POST : http://localhost:8080/api/v1.0/moviebooking/Master/book
+
+    Json :
+
+        {
+            "quantity" : 10
+        }
+
+************************************************************************************************************************
+
+9. Delete Movie : DELETE : http://localhost:8080/api/v1.0/moviebooking/MovieName/delete/{movieId}
+
+    DELETE : http://localhost:8080/api/v1.0/moviebooking/Maaster/delete/64a5120dcfbed260175b7e6a
+
+************************************************************************************************************************
+
+10. Update Ticket Status : PUT : http://localhost:8080/api/v1.0/moviebooking/{movieName}/update/{ticket}?status=Booked
+
+    PUT : http://localhost:8080/api/v1.0/moviebooking/Master/update/64a52e5aaa4a2f20aabf753e?status=Booked
+
+************************************************************************************************************************
+

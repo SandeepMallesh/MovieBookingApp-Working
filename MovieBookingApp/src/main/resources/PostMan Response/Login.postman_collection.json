@@ -1,0 +1,41 @@
+{
+	"info": {
+		"_postman_id": "278961a3-0224-4dd1-af36-3facc75d0317",
+		"name": "Login",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28090453"
+	},
+	"item": [
+		{
+			"name": "New Request",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "/*{\r\n    \"username\" : \"malleshajay\",\r\n    \"password\" : \"ajaynew\"\r\n}*/\r\n\r\n{\r\n   \"username\" : \"mallesh\",\r\n   \"password\" : 1234\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1.0/moviebooking/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1.0",
+						"moviebooking",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

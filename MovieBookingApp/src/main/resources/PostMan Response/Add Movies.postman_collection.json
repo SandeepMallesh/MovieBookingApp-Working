@@ -1,0 +1,41 @@
+{
+	"info": {
+		"_postman_id": "b0fc66b3-9b2e-4d64-b573-1abdd3356949",
+		"name": "Add Movies",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28090453"
+	},
+	"item": [
+		{
+			"name": "Add Movies",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "  {\r\n    \"id\": \"64a4ef8c53c67b03c6874c18\",\r\n    \"name\": \"Varisu\",\r\n    \"description\": \"A period action drama\",\r\n    \"totalTickets\": 150,\r\n    \"availableTickets\": 120,\r\n    \"ticketStatus\": \"Available\",\r\n    \"director\": \"Prashanth Neel\",\r\n    \"cast\": [\"Yash\", \"Srinidhi Shetty\"],\r\n    \"genre\": \"Action\"\r\n  }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1.0/moviebooking/movies",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1.0",
+						"moviebooking",
+						"movies"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
