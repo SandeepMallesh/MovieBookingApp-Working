@@ -13,9 +13,9 @@ import java.util.Optional;
 
 @Service
 public class MovieService {
-    private static final Logger LOGGER = LoggerFactory.getLogger(MovieService.class);
+    Logger LOGGER = LoggerFactory.getLogger(MovieService.class);
 
-    private final MovieRepository movieRepository;
+    MovieRepository movieRepository;
 
     @Autowired
     public MovieService(MovieRepository movieRepository) {

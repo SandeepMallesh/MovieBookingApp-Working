@@ -19,8 +19,8 @@ import java.util.Optional;
 
 @Service
 public class TicketService {
-    private final TicketRepository ticketRepository;
-    private static final Logger logger = LoggerFactory.getLogger(TicketService.class);
+    TicketRepository ticketRepository;
+    Logger logger = LoggerFactory.getLogger(TicketService.class);
 
     @Autowired
     public TicketService(TicketRepository ticketRepository) {

@@ -26,9 +26,9 @@ import java.util.Optional;
 public class MovieBookingController {
      Logger logger = LoggerFactory.getLogger(MovieBookingController.class);
 
-    private final UserService userService;
-    private final MovieService movieService;
-    private final TicketService ticketService;
+     UserService userService;
+    MovieService movieService;
+    TicketService ticketService;
 
     @Autowired
     public MovieBookingController(UserService userService, MovieService movieService, TicketService ticketService) {

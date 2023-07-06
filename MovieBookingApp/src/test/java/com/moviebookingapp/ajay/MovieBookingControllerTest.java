@@ -35,16 +35,16 @@ import static org.mockito.Mockito.*;
 public class MovieBookingControllerTest {
 
     @Mock
-    private UserService userService;
+    UserService userService;
 
     @Mock
-    private MovieService movieService;
+    MovieService movieService;
 
     @Mock
-    private TicketService ticketService;
+    TicketService ticketService;
 
     @InjectMocks
-    private MovieBookingController movieBookingController;
+    MovieBookingController movieBookingController;
 
     @BeforeEach
     public void setUp() {
