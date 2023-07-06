@@ -8,12 +8,15 @@
 package com.moviebookingapp.ajay.service;
 import com.moviebookingapp.ajay.model.User;
 import com.moviebookingapp.ajay.repository.UserRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
     private final UserRepository userRepository;
+    private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 
     @Autowired
     public UserService(UserRepository userRepository) {
@@ -21,10 +24,17 @@ public class UserService {
     }
 
     public User registerUser(User user) {
-        return userRepository.save(user);
+        logger.info("Registering user: {}", user);
+        User registeredUser = userRepository.save(user);
+        logger.info("User registered: {}", registeredUser);
+        return registeredUser;
     }
 
     public User getUserByUsername(String username) {
-        return userRepository.findByUsername(username);
+        logger.info("Retrieving user by username: {}", username);
+        User user = userRepository.findByUsername(username);
+        logger.info("Retrieved user: {}", user);
+        return user;
     }
 }
+

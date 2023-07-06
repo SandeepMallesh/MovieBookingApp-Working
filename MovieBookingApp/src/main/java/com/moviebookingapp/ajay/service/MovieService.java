@@ -1,63 +1,49 @@
-/**
- * Created by : Ajaymallesh
- * Date :05-07-2023
- * Time :17:00
- * ProjectName :MoviebookingApp
- */
-
 package com.moviebookingapp.ajay.service;
-import com.moviebookingapp.ajay.repository.MovieRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
-import org.springframework.stereotype.Service;
+
 import com.moviebookingapp.ajay.model.Movie;
+import com.moviebookingapp.ajay.repository.MovieRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.springframework.data.mongodb.core.MongoTemplate;
-
 import java.util.Optional;
 
 @Service
 public class MovieService {
+    private static final Logger LOGGER = LoggerFactory.getLogger(MovieService.class);
+
     private final MovieRepository movieRepository;
 
-    /*public Optional<Movie> findByName(String name) {
-        return movieRepository.findByName(name);
-    } */
-
-    public List<Movie> findMoviesByName(String movieName) {
-        return movieRepository.findByName(movieName);
-    }
-
-    public Movie updateMovie(Movie movie) {
-        return movieRepository.save(movie);
-    }
-
-
+    @Autowired
     public MovieService(MovieRepository movieRepository) {
         this.movieRepository = movieRepository;
     }
 
     public List<Movie> getAllMovies() {
+        LOGGER.info("Fetching all movies");
         return movieRepository.findAll();
     }
 
+    public Optional<Movie> getMovieByNameAndId(String movieName, String id) {
+        LOGGER.info("Fetching movie by name: {} and id: {}", movieName, id);
+        return movieRepository.findByMovieNameAndId(movieName, id);
+    }
 
     public List<Movie> searchMoviesByName(String movieName) {
+        LOGGER.info("Searching movies by name: {}", movieName);
         return movieRepository.findByNameContainingIgnoreCase(movieName);
-
-        // Implement the search logic based on the movie name
-        // For example: movieRepository.findByNameContaining(movieName);
-        // Return the list of matching movies
     }
 
     public Movie saveMovie(Movie movie) {
+        LOGGER.info("Saving movie: {}", movie);
         return movieRepository.save(movie);
     }
 
     public boolean deleteMovie(String movieId) {
+        LOGGER.info("Deleting movie by id: {}", movieId);
         Optional<Movie> optionalMovie = movieRepository.findById(movieId);
         if (optionalMovie.isPresent()) {
             movieRepository.deleteById(movieId);
@@ -68,50 +54,12 @@ public class MovieService {
     }
 
     public Movie addMovie(Movie movie) {
+        LOGGER.info("Adding movie: {}", movie);
         return movieRepository.save(movie);
     }
 
-    private List<String> generateTickets(Movie movie) {
-        List<String> tickets = new ArrayList<>();
-
-        // Generate tickets for the movie
-
-        // Add generated tickets to the movie
-        movie.setTickets(tickets);
-
-        // Return the generated tickets
-        return tickets;
-    }
-
-    public Optional<Movie> getMovieByNameAndId(String movieName, String id) {
-        return movieRepository.findByMovieNameAndId(movieName, id);
-    }
-
-    /*public Ticket updateTicketStatus(String movieName, String ticketId, String newStatus) {
-        // Retrieve the movie by name
-        Movie movie = movieRepository.findByName(movieName);
-        if (movie == null) {
-            return null; // Movie not found
-
-
-        // Retrieve the ticket by ID
-        Ticket ticket = movie.getTickets().stream()
-                .filter(t -> t.getId().equals(ticketId))
-                .findFirst()
-                .orElse(null);
-        if (ticket == null) {
-            return null; // Ticket not found
-        }
-
-        // Update the ticket status
-        ticket.setStatus(newStatus);
-
-        // Save the updated movie
-        movieRepository.save(movie);
-
-        return ticket;
-    }*/
     public boolean deleteMovieByNameAndId(String movieName, String id) {
+        LOGGER.info("Deleting movie by name: {} and id: {}", movieName, id);
         Optional<Movie> optionalMovie = movieRepository.findByNameAndId(movieName, id);
         if (optionalMovie.isPresent()) {
             movieRepository.delete(optionalMovie.get());
@@ -120,31 +68,46 @@ public class MovieService {
             return false;
         }
     }
+
     public Movie addMovieWithTicketCount(Movie movie) {
+        LOGGER.info("Adding movie with ticket count: {}", movie);
         return movieRepository.save(movie);
     }
 
-
     public void updateTicketStatus(Movie movie) {
+        LOGGER.info("Updating ticket status for movie: {}", movie.getName());
         int ticketCount = movie.getTicketCount();
-
         if (ticketCount == 0) {
             movie.setTicketStatus("SOLD OUT");
         } else {
             movie.setTicketStatus("BOOK ASAP");
         }
-
-        // Update the movie in the database
         movieRepository.save(movie);
     }
 
-
     public Optional<Movie> findByName(String name) {
+        LOGGER.info("Searching for movie by name: {}", name);
         List<Movie> movies = movieRepository.findByName(name);
         if (!movies.isEmpty()) {
+            LOGGER.info("Found movie by name: {}", name);
             return Optional.of(movies.get(0));
         } else {
+            LOGGER.info("No movie found by name: {}", name);
             return Optional.empty();
         }
     }
+
+    public Movie updateMovie(Movie movie) {
+        LOGGER.info("Updating movie: {}", movie);
+        Movie updatedMovie = movieRepository.save(movie);
+        LOGGER.info("Movie updated: {}", updatedMovie);
+        return updatedMovie;
+    }
+
+    public List<Movie> findMoviesByName(String movieName) {
+        LOGGER.info("Finding movies by name: {}", movieName);
+        return movieRepository.findByName(movieName);
+    }
 }
+
+

@@ -7,11 +7,14 @@
 
 package com.moviebookingapp.ajay.model;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 @Document(collection = "movies")
 public class Movie {
@@ -20,14 +23,27 @@ public class Movie {
     private int ticketCount;
     private int quantity;
     private int totalTickets;
+    private String title;
+
 
     private String ticketStatus; // New field for ticket status
 
     private List<Ticket> tickets = new ArrayList<>();
 
     public Movie() {
+
+        Logger logger = LoggerFactory.getLogger(Movie.class);
+
         // Initialize the tickets list
         this.tickets = new ArrayList<>();
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     // Constructor, getters, setters, and other class members
