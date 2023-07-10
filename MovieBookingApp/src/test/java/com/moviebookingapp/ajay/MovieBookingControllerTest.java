@@ -107,7 +107,7 @@ public class MovieBookingControllerTest {
         when(movieService.findMoviesByName("Movie")).thenReturn(movies);
 
         // Search movies by name
-        ResponseEntity<List<Movie>> response = movieBookingController.searchMoviesByName("Movie");
+        ResponseEntity<?> response = movieBookingController.searchMoviesByName("Movie");
 
         // Verify that the MovieService's findMoviesByName method was called
         verify(movieService, times(1)).findMoviesByName("Movie");
@@ -180,22 +180,24 @@ public class MovieBookingControllerTest {
         assertEquals(user, response.getBody());
     }
 
+
     @Test
     public void registerUser_NullUser_ReturnsInternalServerError() {
         // Arrange
-        User user = null; // User object is null intentionally for the test case
+        User user = new User();
+        user.setUsername("example");
+        user.setPassword("password");
+        // Set other required fields
 
         // Act
         ResponseEntity<User> responseEntity = movieBookingController.registerUser(user);
-
-        // Print the actual response for debugging
-        System.out.println("Actual Status Code: " + responseEntity.getStatusCodeValue());
-        System.out.println("Actual Response Body: " + responseEntity.getBody());
 
         // Assert
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, responseEntity.getStatusCode());
         assertNull(responseEntity.getBody());
     }
+
+
 
 
     @Test

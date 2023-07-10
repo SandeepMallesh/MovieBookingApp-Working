@@ -43,8 +43,12 @@ public class MovieBookingController {
         logger.info("Received registration request for user: {}", user.getUsername());
 
         User registeredUser = userService.registerUser(user);
-        logger.info("User registered successfully: {}", registeredUser.getUsername());
+        if (registeredUser == null) {
+            logger.error("Failed to register user: {}", user.getUsername());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
 
+        logger.info("User registered successfully: {}", registeredUser.getUsername());
         return new ResponseEntity<>(registeredUser, HttpStatus.CREATED);
     }
 
