@@ -6,6 +6,7 @@
  */
 
 package com.moviebookingapp.ajay.service;
+import com.moviebookingapp.ajay.exception.UserNotFoundException;
 import com.moviebookingapp.ajay.model.User;
 import com.moviebookingapp.ajay.repository.UserRepository;
 import org.slf4j.Logger;
@@ -30,7 +31,7 @@ public class UserService {
         return registeredUser;
     }
 
-    public User getUserByUsername(String username) {
+     public User getUserByUsername(String username) {
         logger.info("Retrieving user by username: {}", username);
         User user = userRepository.findByUsername(username);
         logger.info("Retrieved user: {}", user);

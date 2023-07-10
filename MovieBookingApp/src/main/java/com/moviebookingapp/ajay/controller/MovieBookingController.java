@@ -18,6 +18,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -102,19 +103,37 @@ public class MovieBookingController {
         }
     }
 
-    @GetMapping("/movies/search/{moviename}")
+    /* @GetMapping("/movies/search/{moviename}")
     public ResponseEntity<List<Movie>> searchMoviesByName(@PathVariable("moviename") String movieName) {
         logger.info("Received search request for movies by name: {}", movieName);
 
         List<Movie> movies = movieService.findMoviesByName(movieName);
         if (movies.isEmpty()) {
             logger.info("No movies found with name: {}", movieName);
+            System.out.println("No movie found by name: {}");
             return ResponseEntity.noContent().build();
         } else {
             logger.info("Returning {} movies with name: {}", movies.size(), movieName);
             return ResponseEntity.ok(movies);
         }
+    } */
+
+
+    @GetMapping("/movies/search/{moviename}")
+    public ResponseEntity<?> searchMoviesByName(@PathVariable("moviename") String movieName) {
+        logger.info("Received search request for movies by name: {}", movieName);
+
+        List<Movie> movies = movieService.findMoviesByName(movieName);
+        if (movies.isEmpty()) {
+            logger.info("No movies found with name: {}", movieName);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("Movie Not Found");
+        } else {
+            logger.info("Returning {} movies with name: {}", movies.size(), movieName);
+            return ResponseEntity.ok(movies);
+        }
     }
+
 
     @GetMapping("/{username}/logout")
     public String logOut(){

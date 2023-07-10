@@ -1,11 +1,16 @@
 package com.moviebookingapp.ajay.service;
 
+import com.moviebookingapp.ajay.exception.MovieNotFoundException;
 import com.moviebookingapp.ajay.model.Movie;
 import com.moviebookingapp.ajay.repository.MovieRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import com.moviebookingapp.ajay.service.MovieService;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +27,7 @@ public class MovieService {
         this.movieRepository = movieRepository;
     }
 
+
     public List<Movie> getAllMovies() {
         LOGGER.info("Fetching all movies");
         return movieRepository.findAll();
@@ -33,8 +39,16 @@ public class MovieService {
     }
 
     public List<Movie> searchMoviesByName(String movieName) {
-        LOGGER.info("Searching movies by name: {}", movieName);
-        return movieRepository.findByNameContainingIgnoreCase(movieName);
+        LOGGER.info("Received search request for movies by name: {}", movieName);
+
+        List<Movie> movies = findMoviesByName(movieName);
+        if (movies.isEmpty()) {
+            LOGGER.info("No movies found with name: {}", movieName);
+            throw new MovieNotFoundException("No movies found with name: " + movieName);
+        } else {
+            LOGGER.info("Returning {} movies with name: {}", movies.size(), movieName);
+            return movies;
+        }
     }
 
     public Movie saveMovie(Movie movie) {

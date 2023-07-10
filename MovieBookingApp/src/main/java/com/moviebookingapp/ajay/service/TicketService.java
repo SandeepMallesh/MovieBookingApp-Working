@@ -7,6 +7,7 @@
 
 package com.moviebookingapp.ajay.service;
 
+import com.moviebookingapp.ajay.exception.TicketNotFoundException;
 import com.moviebookingapp.ajay.model.Ticket;
 import com.moviebookingapp.ajay.repository.TicketRepository;
 import org.slf4j.Logger;
@@ -39,6 +40,11 @@ public class TicketService {
         Optional<Ticket> ticket = ticketRepository.findByMovieNameAndId(movieName, ticketId);
         logger.info("Retrieved ticket: {}", ticket.orElse(null));
         return ticket;
+    }
+
+    public Ticket getTicketById(String ticketId) {
+        Optional<Ticket> optionalTicket = ticketRepository.findById(ticketId);
+        return optionalTicket.orElseThrow(() -> new TicketNotFoundException("Ticket not found with ID: " + ticketId));
     }
 
     public Ticket updateTicket(Ticket ticket) {
