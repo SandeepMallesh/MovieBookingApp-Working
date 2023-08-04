@@ -38,6 +38,9 @@ public class Movie {
         this.tickets = new ArrayList<>();
     }
 
+    public Movie(String number, String s) {
+    }
+
     public String getTitle() {
         return title;
     }
